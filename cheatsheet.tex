@@ -1,0 +1,121 @@
+\documentclass[10pt,landscape,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{eqlist}
+\usepackage[pdftex,hidelinks]{hyperref}
+\usepackage{nopageno}
+\usepackage[cm]{fullpage}
+\usepackage{multicol}
+\usepackage[hang,flushmargin]{footmisc}
+\usepackage{graphicx}
+
+%custom commands and config
+\newcommand{\theauthor}{Andrew Cox}
+\newcommand{\theversion}{1.0}
+\parindent=0cm
+\parskip=1mm
+\def\eqlistlabel#1{\bfseries#1}
+\setcounter{secnumdepth}{-1}
+
+\hypersetup{%
+  pdftitle={pytest Cheatsheet},
+  pdfauthor={\theauthor},
+  pdfkeywords={Python, pytest, Cheatsheet},
+  pdfstartview={FitH}
+}
+
+%-------------------------------------------------------------------------------
+
+\begin{document}
+
+%-------------------------------------------------------------------------------
+%	Title
+%-------------------------------------------------------------------------------
+\begin{center}
+    \begin{minipage}[c]{0.15\textwidth}
+      	\includegraphics[height=2cm]{assets/pytest.png}
+    \end{minipage}
+    \begin{minipage}[c]{0.43\textwidth}
+    	\begin{center}
+      		\huge \bfseries \texttt{pytest} Cheatsheet
+      	\end{center}
+    \end{minipage}
+    \begin{minipage}[r]{0.15\textwidth}
+      	\includegraphics[height=2cm]{assets/pytest.png}
+    \end{minipage}
+    \vspace{0.5cm}
+\end{center}
+
+%-------------------------------------------------------------------------------
+%	Contents
+%-------------------------------------------------------------------------------
+
+\begin{multicols}{2}
+
+\subsection{Basics}
+Docs: \url{https://docs.pytest.org/en/stable/}
+
+\begin{eqlist}
+	\item[\texttt{pytest}] Run all tests pytest can find
+	\item[\texttt{pytest <file> <file>}] Run tests in specific files
+\end{eqlist}
+
+\subsection{Selecting Tests}
+
+Example: \texttt{pytest tests/test_sim.py -k sff -m parallel}
+
+\begin{eqlist}
+	\item[\texttt{-k EXPR}] Only run tests matching given expression
+	\item[\texttt{-m MARK}] Only run tests matching given mark
+	\item[\texttt{-x, --exitfirst}] Exit on first error or failed test
+	\item[\texttt{--maxfail=num}] Exit after first num failures or errors
+	\item[\texttt{--lf}] Rerun only the tests that failed at last run
+	\item[\texttt{--ff}] Run all tests, but run last failures first
+	\item[\texttt{--nf}] Run tests from new files first and then tests sorted by file mtime
+\end{eqlist}
+
+\subsection{Inspecting Settings}
+\begin{eqlist}
+	\item[\texttt{--markers}] Show markers
+	\item[\texttt{--fixtures}] Show available fixtures
+	\item[\texttt{--durations=N}] Show N slowest setup/test durations (N=0 for all)
+\end{eqlist}
+
+\subsection{Run Settings}
+\begin{eqlist}
+	\item[\texttt{-v}] Increase verbosity
+	\item[\texttt{-vv}] Even more verbose!
+	\item[\texttt{-s}] Show stdout and stderr in real time
+	\item[\texttt{--co}] Only collect tests, don't execute them
+	\item[\texttt{--trace}] Immediately break when running each test
+	\item[\texttt{-p name}] Early-load given plugin module name or entry point. To avoid loading of plugins, use the "no:" prefix, e.g., "no:doctest"
+\end{eqlist}
+
+% \columnbreak
+\subsection{Parallel Execution: \texttt{pytest-xdist}}
+
+\begin{eqlist}
+	\item[\texttt{-n}] Set the number of processes to run
+	\item[\texttt{--dist=distmode}] Set the distribution mode; "each", "load", "loadscope", "loadfile", "loadgroup", "worksteal"
+\end{eqlist}
+					
+\subsection{Code Coverage: \texttt{pytest-cov}}
+
+\begin{eqlist}
+	\item[\texttt{--cov=[SOURCE]}] Path or package name to measure during execution (multi-allowed)
+	\item[\texttt{--cov-branch}] Enable branch coverage
+\end{eqlist}
+
+\small{%
+\hrule
+Author: \theauthor~--- version \theversion~--- license \href{https://creativecommons.org/licenses/by-nc-sa/3.0}{cc-by-nc-sa 3.0}\\
+% See \url{https://github.com/nblock/pdb-cheatsheet} for more information.
+}
+
+\end{multicols}
+\end{document}		
+
+
+
