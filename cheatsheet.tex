@@ -59,17 +59,18 @@ Docs: \url{https://docs.pytest.org/en/stable/}
 
 \begin{eqlist}
 	\item[\texttt{pytest}] Run all tests pytest can find
-	\item[\texttt{pytest <file> <file>}] Run tests in specific files
+	\item[\texttt{pytest <file> ...}] Run tests in specific files
 \end{eqlist}
 
 \subsection{Selecting Tests}
 
-Example: \texttt{pytest tests/test_sim.py -k sff -m parallel}
+Example: \texttt{pytest tests/test\_sim.py -k sff -m parallel}
 
 \begin{eqlist}
+	\item[\texttt{--co}] Only collect tests, don't execute them
 	\item[\texttt{-k EXPR}] Only run tests matching given expression
 	\item[\texttt{-m MARK}] Only run tests matching given mark
-	\item[\texttt{-x, --exitfirst}] Exit on first error or failed test
+	\item[\texttt{-x}] Exit on first error or failed test
 	\item[\texttt{--maxfail=num}] Exit after first num failures or errors
 	\item[\texttt{--lf}] Rerun only the tests that failed at last run
 	\item[\texttt{--ff}] Run all tests, but run last failures first
@@ -80,7 +81,6 @@ Example: \texttt{pytest tests/test_sim.py -k sff -m parallel}
 \begin{eqlist}
 	\item[\texttt{--markers}] Show markers
 	\item[\texttt{--fixtures}] Show available fixtures
-	\item[\texttt{--durations=N}] Show N slowest setup/test durations (N=0 for all)
 \end{eqlist}
 
 \subsection{Run Settings}
@@ -88,9 +88,8 @@ Example: \texttt{pytest tests/test_sim.py -k sff -m parallel}
 	\item[\texttt{-v}] Increase verbosity
 	\item[\texttt{-vv}] Even more verbose!
 	\item[\texttt{-s}] Show stdout and stderr in real time
-	\item[\texttt{--co}] Only collect tests, don't execute them
 	\item[\texttt{--trace}] Immediately break when running each test
-	\item[\texttt{-p name}] Early-load given plugin module name or entry point. To avoid loading of plugins, use the "no:" prefix, e.g., "no:doctest"
+	\item[\texttt{-p name}] Early-load given plugin module \texttt{name} or entry point. To avoid loading of plugins, use the "no:" prefix, e.g., \texttt{-p no:doctest}
 \end{eqlist}
 
 % \columnbreak
